@@ -31,6 +31,25 @@ class AppGrabatv:
 		self.glade.get_widget("buttonGrabar").show()
 		os.system("./sh/grabatv.stop.sh")
 		time.sleep(3)
+		
+    def on_buttonAnadirPrograma_clicked(self, widget):
+		os.system("crontab -l > /tmp/grabatvcrontab.txt")
+		fcrontab = open("/tmp/grabatvcrontab.txt","a")
+		fcrontab.write(self.glade.get_widget("entryIniMin").get_text())
+		fcrontab.write(" ")
+		fcrontab.write(self.glade.get_widget("entryIniHora").get_text())
+		fcrontab.write(" * * ")
+		fcrontab.write(self.glade.get_widget("entryIniDia").get_text())
+		fcrontab.write(" /usr/share/grabatv/sh/grabatv.grabar.sh\n")
+		fcrontab.write(self.glade.get_widget("entryFinMin").get_text())
+		fcrontab.write(" ")
+		fcrontab.write(self.glade.get_widget("entryFinHora").get_text())
+		fcrontab.write(" * * ")
+		fcrontab.write(self.glade.get_widget("entryFinDia").get_text())
+		fcrontab.write(" /usr/share/grabatv/sh/grabatv.stop.sh\n")
+		fcrontab.close()
+		os.system("crontab /tmp/grabatvcrontab.txt")
+		
  
 if __name__ == "__main__":
     try:
