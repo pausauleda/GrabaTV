@@ -52,6 +52,11 @@ class AppGrabatv:
 			fcrontab.write(" /usr/share/grabatv/sh/grabatv.stop.sh\n")
 		fcrontab.close()
 		os.system("crontab /tmp/grabatvcrontab.txt")
+
+    def on_buttonBorrarPrograma_clicked(self, widget):
+		os.system("crontab -l > /tmp/grabatvcrontab.txt")
+		os.system("sed -i '/'grabatv'/d' /tmp/grabatvcrontab.txt")
+		os.system("crontab /tmp/grabatvcrontab.txt")
 		
  
 if __name__ == "__main__":
