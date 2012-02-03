@@ -52,12 +52,28 @@ class AppGrabatv:
 			fcrontab.write(" /usr/share/grabatv/sh/grabatv.stop.sh\n")
 		fcrontab.close()
 		os.system("crontab /tmp/grabatvcrontab.txt")
+		os.system("crontab -l | grep grabatv> /tmp/grabatvcrontab.txt")
+		fcrontab = open("/tmp/grabatvcrontab.txt","r")
+		tbuffer = self.glade.get_widget("textviewProgramas").get_buffer()
+		tbuffer.set_text(fcrontab.read())
+		fcrontab.close()
 
     def on_buttonBorrarPrograma_clicked(self, widget):
 		os.system("crontab -l > /tmp/grabatvcrontab.txt")
 		os.system("sed -i '/'grabatv'/d' /tmp/grabatvcrontab.txt")
 		os.system("crontab /tmp/grabatvcrontab.txt")
+		os.system("crontab -l | grep grabatv> /tmp/grabatvcrontab.txt")
+		fcrontab = open("/tmp/grabatvcrontab.txt","r")
+		tbuffer = self.glade.get_widget("textviewProgramas").get_buffer()
+		tbuffer.set_text(fcrontab.read())
+		fcrontab.close()
 		
+    def on_buttonVerPrograma_clicked(self, widget):
+		os.system("crontab -l | grep grabatv> /tmp/grabatvcrontab.txt")
+		fcrontab = open("/tmp/grabatvcrontab.txt","r")
+		tbuffer = self.glade.get_widget("textviewProgramas").get_buffer()
+		tbuffer.set_text(fcrontab.read())
+		fcrontab.close()
  
 if __name__ == "__main__":
     try:

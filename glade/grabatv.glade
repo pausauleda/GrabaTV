@@ -326,6 +326,16 @@ Introduce la hora y d&#xED;a de incio y fin de la grabaci&#xF3;n.
             <property name="position">3</property>
           </packing>
         </child>
+        <child>
+          <widget class="GtkTextView" id="textviewProgramas">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="text" translatable="yes">...</property>
+          </widget>
+          <packing>
+            <property name="position">4</property>
+          </packing>
+        </child>
       </widget>
     </child>
   </widget>
