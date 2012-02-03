@@ -46,7 +46,10 @@ class AppGrabatv:
 		fcrontab.write(self.glade.get_widget("entryFinHora").get_text())
 		fcrontab.write(" * * ")
 		fcrontab.write(self.glade.get_widget("entryFinDia").get_text())
-		fcrontab.write(" /usr/share/grabatv/sh/grabatv.stop.sh\n")
+		if self.glade.get_widget("checkbuttonApagar").get_active():
+			fcrontab.write(" /usr/share/grabatv/sh/grabatv.stopshut.sh\n")
+		else:
+			fcrontab.write(" /usr/share/grabatv/sh/grabatv.stop.sh\n")
 		fcrontab.close()
 		os.system("crontab /tmp/grabatvcrontab.txt")
 		
